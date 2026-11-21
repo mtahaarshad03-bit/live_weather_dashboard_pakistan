@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Live weather dashboard for cities across Pakistan with current conditions and a five-day forecast.">
+  <title>SkyCast Pakistan — Live Weather</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SkyCast Pakistan home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>skycast<span class="brand-light"> pakistan</span></span>
+    </a>
+    <div class="topbar-right">
+      <span class="live-indicator"><i></i> LIVE WEATHER</span>
+      <span class="country-pill"><span>🇵🇰</span> PAKISTAN</span>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-row">
+      <div>
+        <p class="eyebrow">YOUR WEATHER, AT A GLANCE</p>
+        <h1>Weather <em>Dashboard</em></h1>
+        <p class="welcome-copy">Real-time conditions and the next five days, across Pakistan.</p>
+      </div>
+      <div class="today-block"><span id="todayDate">Loading date…</span><strong id="todayDay">—</strong></div>
+    </section>
+
+    <section class="search-panel" aria-label="Search Pakistani city">
+      <div class="search-label"><span class="search-icon">⌕</span><div><strong>Find a city</strong><small>Search anywhere in Pakistan</small></div></div>
+      <form id="searchForm" class="search-form">
+        <label class="sr-only" for="cityInput">Enter city name</label>
+        <input id="cityInput" type="search" placeholder="Try Karachi, Lahore, Islamabad…" value="Lahore" autocomplete="off" required>
+        <button type="submit" id="searchButton">Search <span>→</span></button>
+      </form>
+    </section>
+
+    <div class="quick-cities" aria-label="Popular cities">
+      <span>POPULAR:</span>
+      <button class="city-chip" data-city="Lahore">Lahore</button>
+      <button class="city-chip" data-city="Karachi">Karachi</button>
+      <button class="city-chip" data-city="Islamabad">Islamabad</button>
+      <button class="city-chip" data-city="Faisalabad">Faisalabad</button>
+      <button class="city-chip" data-city="Peshawar">Peshawar</button>
+      <button class="city-chip" data-city="Quetta">Quetta</button>
+      <button class="city-chip" data-city="Multan">Multan</button>
+    </div>
+
+    <div id="statusMessage" class="status-message" role="status" aria-live="polite">
+      <span class="spinner"></span> Getting the latest weather…
+    </div>
+
+    <section class="weather-layout" id="weatherContent" aria-live="polite" hidden>
+      <article class="current-card">
+        <div class="current-top">
+          <div><p class="card-kicker">CURRENT WEATHER</p><h2 id="cityName">Lahore</h2><p class="location-line"><span>⌖</span> <span id="locationDetail">Punjab, Pakistan</span></p></div>
+          <span class="current-date" id="currentTime">—</span>
+        </div>
+        <div class="current-main">
+          <div class="temperature-wrap"><span class="weather-emoji" id="currentIcon">☀️</span><div class="temperature" id="currentTemp">--<sup>°C</sup></div></div>
+          <div class="condition-wrap"><strong id="currentCondition">Loading…</strong><span id="feelsLike">Feels like --°</span></div>
+        </div>
+        <div class="current-divider"></div>
+        <div class="current-bottom"><span>LOCAL TIME</span><strong id="localTime">--:--</strong><span class="updated-label">UPDATED <b id="updatedAt">—</b></span></div>
+      </article>
+
+      <section class="details-panel">
+        <div class="panel-heading"><div><p class="card-kicker">WEATHER DETAILS</p><h3>Right now</h3></div><span class="detail-spark">✳</span></div>
+        <div class="metrics-grid">
+          <div class="metric"><span class="metric-icon">💧</span><div><small>HUMIDITY</small><strong id="humidity">--%</strong></div></div>
+          <div class="metric"><span class="metric-icon">🌬️</span><div><small>WIND SPEED</small><strong id="windSpeed">-- <small>km/h</small></strong></div></div>
+          <div class="metric"><span class="metric-icon">🌡️</span><div><small>FEELS LIKE</small><strong id="feelsMetric">--°C</strong></div></div>
+          <div class="metric"><span class="metric-icon">☁️</span><div><small>CLOUD COVER</small><strong id="cloudCover">--%</strong></div></div>
+        </div>
+        <div class="detail-foot"><span class="weather-dot"></span> Live conditions for <b id="detailCity">Lahore</b></div>
+      </section>
+    </section>
+
+    <section class="forecast-section" id="forecastSection" hidden>
+      <div class="forecast-heading"><div><p class="card-kicker">PLAN AHEAD</p><h3>5-day forecast</h3></div><span class="forecast-note">Daily outlook · Pakistan local time</span></div>
+      <div class="forecast-grid" id="forecastGrid"></div>
+    </section>
+
+    <footer class="dashboard-footer">
+      <span>SKYCAST PAKISTAN <i>·</i> WEATHER THAT MOVES WITH YOU</span>
+      <span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> · Updates automatically</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
